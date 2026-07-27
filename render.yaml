@@ -1,0 +1,17 @@
+services:
+  - type: worker
+    name: speech2textsbot
+    env: python
+    buildCommand: "apt-get update && apt-get install -y ffmpeg && pip install -r requirements.txt"
+    startCommand: "python bot.py"
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: WHISPER_MODEL
+        value: base
+      - key: MAX_FILE_SIZE
+        value: 52428800
+      - key: TEMP_FOLDER
+        value: temp
+      - key: LOG_LEVEL
+        value: INFO
